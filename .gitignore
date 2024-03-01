@@ -8,3 +8,6 @@
 *.njsproj
 *.sln
 *.sw?
+
+# Data
+/data

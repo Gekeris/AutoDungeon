@@ -6,7 +6,8 @@ RUN yarn install
 COPY . .
 RUN yarn build
 
-COPY --from=builder /app/dist /usr/share/nginx/html
+FROM nginx:1.25.4
+COPY --from=build /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 RUN sed -i -e 's/API_BASE_URI/http:\/\/host.docker.internal:3001\/api/' /etc/nginx/conf.d/default.conf
 
